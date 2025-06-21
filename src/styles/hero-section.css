@@ -1,0 +1,22 @@
+.top-left {
+  left: calc(50% - 500px);
+  top: 250px;
+  width: 350px;
+}
+
+.top-right {
+  right: calc(50% - 500px);
+  top: 200px;
+  width: 350px;
+}
+
+.bottom-left {
+  left: calc(50% - 500px);
+  width: 350px;
+  transform: translateX(-150%);
+  bottom: calc(50% - 350px);
+}
+
+.hero-image {
+  background-image: url("/public/hero.jpg");
+}

@@ -1,1 +1,24 @@
+:root {
+  --bg: #f5f5dc;
+  --text: #5d4037;
+  --text-active: oklch(62.7% 0.194 149.214);
+  --accent: #8d6e63;
+  --cta: #558b2f;
+  --neon: #11ff00;
+  --off-white: #f3ede4;
+  --contrast: #dcedc8;
+}
+* {
+  font-family: "Oswald", sans-serif;
+}
+
+h1 {
+  text-align: center;
+  letter-spacing: -1.5px;
+  text-transform: uppercase;
+  margin-bottom: 0;
+  font-size: 7vw;
+  font-weight: 600;
+  line-height: 1.2em;
+}
 @import "tailwindcss";

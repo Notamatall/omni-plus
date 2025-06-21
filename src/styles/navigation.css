@@ -1,0 +1,26 @@
+.menu-item {
+  font-size: 20px;
+  font-weight: 500;
+  border-radius: 12px;
+  text-transform: uppercase;
+  padding: 7px;
+  height: 100%;
+}
+
+.menu-item-mobile {
+  font-size: 20px;
+  font-weight: 500;
+  border-radius: 12px;
+  text-transform: uppercase;
+  padding: 7px;
+  height: 100%;
+}
+
+.menu-item:hover {
+  color: var(--text-active);
+}
+
+.menu-item:hover .text {
+  transform: scale(1.05) !important;
+  transition: 0.2s;
+}

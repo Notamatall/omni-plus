@@ -1,389 +1,21 @@
-import { useState, useEffect, useRef } from "react";
-import {
-  motion,
-  useScroll,
-  useTransform,
-  useInView,
-  AnimatePresence,
-} from "framer-motion";
-import {
-  Menu,
-  X,
-  Leaf,
-  Droplets,
-  Sun,
-  Wind,
-  ChevronDown,
-  Plus,
-  Minus,
-  ArrowRight,
-} from "lucide-react";
+import { useState, useRef } from "react";
+import { motion, useInView, AnimatePresence } from "framer-motion";
+import { Leaf, Plus, Minus, ArrowRight } from "lucide-react";
 import "./styles/app.css";
-import { Particle } from "./types/particle";
-
-// const OrganicBackground = () => {
-//   const canvasRef = useRef<HTMLCanvasElement>(null);
-
-//   useEffect(() => {
-//     const canvas = canvasRef.current;
-//     if (!canvas) return;
-
-//     const ctx = canvas.getContext("2d");
-//     if (!ctx) return;
-
-//     const handleResize = () => {
-//       canvas.width = window.innerWidth;
-//       canvas.height = window.innerHeight;
-//     };
-//     handleResize();
-//     window.addEventListener("resize", handleResize);
-
-//     class Particle {
-//       x: number;
-//       y: number;
-//       size: number;
-//       speedX: number;
-//       speedY: number;
-//       opacity: number;
-//       hue: number;
-//       canvas: HTMLCanvasElement;
-//       constructor(canvas: HTMLCanvasElement) {
-//         this.canvas = canvas;
-//         this.x = Math.random() * this.canvas.width;
-//         this.y = Math.random() * this.canvas.height;
-//         this.size = Math.random() * 4 + 2;
-//         this.speedX = (Math.random() - 0.5) * 0.3;
-//         this.speedY = (Math.random() - 0.5) * 0.3;
-//         this.opacity = Math.random() * 0.3 + 0.1;
-//         this.hue = Math.random() * 60 + 80; // Green hues
-//       }
-
-//       update() {
-//         this.x += this.speedX;
-//         this.y += this.speedY;
-
-//         // Add slight floating motion
-//         this.y += Math.sin(Date.now() * 0.001 + this.x * 0.01) * 0.1;
-
-//         if (this.x > this.canvas.width + 50) this.x = -50;
-//         if (this.x < -50) this.x = this.canvas.width + 50;
-//         if (this.y > this.canvas.height + 50) this.y = -50;
-//         if (this.y < -50) this.y = this.canvas.height + 50;
-//       }
-
-//       draw() {
-//         if (!ctx) return;
-//         ctx.save();
-//         ctx.globalAlpha = this.opacity;
-//         ctx.fillStyle = `hsl(${this.hue}, 70%, 50%)`;
-//         ctx.beginPath();
-//         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-//         ctx.fill();
-
-//         // Add glow effect
-//         ctx.shadowBlur = 20;
-//         ctx.shadowColor = `hsl(${this.hue}, 70%, 50%)`;
-//         ctx.fill();
-//         ctx.restore();
-//       }
-//     }
-
-//     const particles: Particle[] = [];
-//     for (let i = 0; i < 50; i++) {
-//       particles.push(new Particle(canvas));
-//     }
-
-//     const animate = () => {
-//       ctx.fillStyle = "rgba(250, 250, 248, 0.02)";
-//       ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-//       particles.forEach((particle) => {
-//         particle.update();
-//         particle.draw();
-//       });
-//       requestAnimationFrame(animate);
-//     };
-//     animate();
-
-//     return () => window.removeEventListener("resize", handleResize);
-//   }, []);
-
-//   return <canvas ref={canvasRef} className="fixed inset-0 z-0" />;
-// };
-
-// // Custom Leaf Cursor
-// const LeafCursor = () => {
-//   const [position, setPosition] = useState({ x: 0, y: 0 });
-//   const [isPointer, setIsPointer] = useState(false);
-
-//   useEffect(() => {
-//     const handleMouseMove = (e: MouseEvent) => {
-//       setPosition({ x: e.clientX, y: e.clientY });
-//       const target = e.target as HTMLElement;
-//       setIsPointer(window.getComputedStyle(target).cursor === "pointer");
-//     };
-
-//     window.addEventListener("mousemove", handleMouseMove);
-//     return () => window.removeEventListener("mousemove", handleMouseMove);
-//   }, []);
-
-//   return (
-//     <motion.div
-//       className="fixed pointer-events-none z-50 hidden lg:block"
-//       animate={{
-//         x: position.x - 12,
-//         y: position.y - 12,
-//         scale: isPointer ? 1.2 : 1,
-//         rotate: isPointer ? 10 : 0,
-//       }}
-//       transition={{ type: "spring", damping: 30, stiffness: 400 }}
-//     >
-//       <Leaf size={24} className="text-green-600 fill-green-500" />
-//     </motion.div>
-//   );
-// };
-
-// Navigation
-
-const ParticleCanvas = () => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    // Set canvas size
-    const handleResize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-    handleResize();
-    window.addEventListener("resize", handleResize);
-
-    const particles: Particle[] = [];
-    for (let i = 0; i < 100; i++) {
-      particles.push(new Particle(canvas, ctx));
-    }
-
-    const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach((particle) => {
-        particle.update();
-        particle.draw();
-      });
-      requestAnimationFrame(animate);
-    };
-    animate();
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  return <canvas ref={canvasRef} className="fixed inset-0 z-0" />;
-};
-
-const Navigation = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    console.log(element);
-    element?.scrollIntoView({ behavior: "smooth" });
-    setIsOpen(false);
-  };
-
-  const navItems = [
-    { id: "section1", label: "Section 1" },
-    { id: "section2", label: "Section 2" },
-    { id: "section3", label: "Section 3" },
-    { id: "section4", label: "Section 4" },
-    { id: "section5", label: "Section 5" },
-    { id: "section6", label: "Section 6" },
-    { id: "section7", label: "Section 7" },
-    { id: "section8", label: "Section 8" },
-    { id: "section9", label: "Section 9" },
-  ];
-
-  return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
-        scrolled ? "bg-white/95 backdrop-blur-lg shadow-lg" : "bg-transparent"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <div className="flex items-center justify-between h-20">
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="flex items-center space-x-2"
-          >
-            <Leaf className="w-8 h-8 text-green-600" />
-            <span className="text-2xl font-bold text-gray-900">GreenGrow</span>
-          </motion.div>
-
-          <div className="hidden lg:flex items-center space-x-8">
-            {navItems.map((item, i) => (
-              <motion.button
-                key={item.id}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 * i }}
-                onClick={() => scrollToSection(item.id)}
-                className="text-gray-700 hover:text-green-600 font-medium transition-colors cursor-pointer"
-              >
-                {item.label}
-              </motion.button>
-            ))}
-            <motion.button
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-green-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-green-700 transition-colors cursor-pointer"
-            >
-              Get Started
-            </motion.button>
-          </div>
-
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden text-gray-900 cursor-pointer"
-          >
-            {isOpen ? <X size={28} /> : <Menu size={28} />}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-white/95 backdrop-blur-lg border-t"
-          >
-            <div className="px-6 py-4 space-y-2">
-              {navItems.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  className="block w-full text-left py-3 text-gray-700 hover:text-green-600 font-medium cursor-pointer"
-                >
-                  {item.label}
-                </button>
-              ))}
-              <button className="w-full bg-green-600 text-white py-3 rounded-full font-semibold mt-4 cursor-pointer">
-                Get Started
-              </button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.nav>
-  );
-};
-
-// Hero Section
-const HeroSection = () => {
-  const { scrollY } = useScroll();
-  const y = useTransform(scrollY, [0, 500], [0, 100]);
-
-  return (
-    <section className="hero-section min-h-screen flex items-center justify-center pt-20">
-      <motion.div
-        style={{ y }}
-        className="max-w-7xl mx-auto px-6 lg:px-12 text-center"
-      >
-        <motion.h1
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-5xl lg:text-7xl font-bold text-gray-900 leading-tight"
-        >
-          Grow faster and nurture better{" "}
-          <span className="text-green-600">with AI</span> that analyses your
-          soil in real time
-        </motion.h1>
-
-        <motion.p
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="mt-6 text-xl lg:text-2xl text-gray-600 max-w-3xl mx-auto"
-        >
-          Backing sustainable farms for growth
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="mt-10 flex flex-col sm:flex-row gap-4 justify-center"
-        >
-          <button className="bg-green-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-green-700 transition-all transform hover:scale-105 cursor-pointer">
-            Get Started
-          </button>
-          <button className="bg-white text-green-600 px-8 py-4 rounded-full font-semibold text-lg border-2 border-green-600 hover:bg-green-50 transition-all cursor-pointer">
-            Learn More
-          </button>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1 }}
-          className="mt-20"
-        >
-          <ChevronDown className="w-8 h-8 text-gray-400 mx-auto animate-bounce" />
-        </motion.div>
-      </motion.div>
-    </section>
-  );
-};
-
-// Feature Card Component
-const FeatureCard = ({ icon: Icon, title, description }: any) => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 50 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6 }}
-      whileHover={{ y: -5, scale: 1.02 }}
-      className="bg-white p-8 rounded-3xl shadow-lg hover:shadow-xl transition-all"
-    >
-      <div className="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mb-6">
-        <Icon className="w-8 h-8 text-green-600" />
-      </div>
-      <h3 className="text-2xl font-bold text-gray-900 mb-4">{title}</h3>
-      <p className="text-gray-600 leading-relaxed">{description}</p>
-    </motion.div>
-  );
-};
+import { Navigation } from "./components/Navigation";
+import { ParticleCanvas } from "./components/ParticleCanvas";
+import { HeroSection } from "./components/HeroSection";
+import { useTranslation } from "react-i18next";
+import { NaturalSolution } from "./components/AboutUs/NaturalSolution";
+import { OurMission } from "./components/AboutUs/OurMission";
+import { DeepTechnology } from "./components/AboutUs/DeepTechnology";
+import { SoilsAreDying } from "./components/GlobalChallenge/SoilsAreDying";
+import { ToxicLegacy } from "./components/GlobalChallenge/ToxicLegacy";
 
 // Stats Section
 const StatsSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
-
   const stats = [
     { value: "98%", label: "Crop Yield Increase" },
     { value: "50%", label: "Water Savings" },
@@ -499,6 +131,8 @@ const FAQSection = () => {
 
 // Main Sections
 const MainSections = () => {
+  const { t } = useTranslation();
+
   return (
     <>
       <section id="section1" className="py-20 bg-white">
@@ -508,36 +142,46 @@ const MainSections = () => {
             whileInView={{ opacity: 1, y: 0 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-              Section 1 Title
+            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-10">
+              {t("section1")}
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We are on a mission to help sustainable farms grow. This is why we
-              reward environmental practices with better pricing.
+            <p className="text-2xl text-green-800 max-w-3xl mx-auto">
+              {t("section1_subtitle")}
             </p>
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <FeatureCard
-              icon={Droplets}
-              title="Smart Irrigation"
-              description="Our AI-driven system monitors soil moisture and delivers water precisely when and where it's needed."
-            />
-            <FeatureCard
-              icon={Sun}
-              title="Optimal Growth"
-              description="Maximize photosynthesis and nutrient uptake with our scientifically formulated fertilizer blend."
-            />
-            <FeatureCard
-              icon={Wind}
-              title="Climate Adaptive"
-              description="Automatically adjusts nutrient delivery based on weather patterns and seasonal changes."
-            />
+            <OurMission />
+            <NaturalSolution />
+            <DeepTechnology />
           </div>
         </div>
       </section>
 
-      <section id="section2" className="py-20 bg-gray-50">
+      <section id="section2" className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-10">
+              {t("section2")}
+            </h2>
+            <p className="text-2xl text-green-800 max-w-3xl mx-auto">
+              {t("section2_subtitle")}
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <SoilsAreDying />
+            <ToxicLegacy />
+            <DeepTechnology />
+          </div>
+        </div>
+      </section>
+
+      <section id="section3" className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div
@@ -545,7 +189,7 @@ const MainSections = () => {
               whileInView={{ opacity: 1, x: 0 }}
             >
               <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-                Section 2 Title
+                {t("section2")}
               </h2>
               <p className="text-xl text-gray-600 mb-8">
                 Transform your farming practices with intelligent fertilizer
@@ -583,38 +227,6 @@ const MainSections = () => {
       </section>
 
       <StatsSection />
-
-      <section id="section3" className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            className="text-4xl lg:text-5xl font-bold text-gray-900 text-center mb-16"
-          >
-            Section 3 Title
-          </motion.h2>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[1, 2, 3, 4, 5, 6].map((item) => (
-              <motion.div
-                key={item}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ delay: item * 0.05 }}
-                className="bg-gradient-to-br from-green-50 to-green-100 p-8 rounded-3xl"
-              >
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                  Feature {item}
-                </h3>
-                <p className="text-gray-700">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                  do eiusmod tempor incididunt.
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       <section id="section4" className="py-20 bg-green-600 text-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-12 text-center">
@@ -996,17 +608,18 @@ const Footer = () => {
 // Main App Component
 const App = () => {
   return (
-    <div className="bg-gray-50 min-h-screen overflow-x-hidden">
+    <>
       {/* <LeafCursor /> */}
-      <ParticleCanvas />
-      <Navigation />
 
-      <div className="relative z-10">
+      <div className="scroll-container">
+        <ParticleCanvas />
+        <Navigation />
         <HeroSection />
         <MainSections />
         <Footer />
+        <div className="relative z-10"></div>
       </div>
-    </div>
+    </>
   );
 };
 

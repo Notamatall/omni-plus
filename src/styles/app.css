@@ -1,3 +1,6 @@
-.hero-section {
-  background-image: url("/public/fert.png");
+.scroll-container {
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
