@@ -58,7 +58,7 @@ export const HeroSection = () => {
       <div className="h-full relative">
         <picture>
           <source media="(min-width: 1000px)" srcSet="/hero-desktop.jpg" />
-          <source media="(min-width: 640px)" srcSet="/hero-mobile.jpg" />
+          <source media="(max-width: 1000px)" srcSet="/hero-mobile.jpg" />
           <img src="/hero-desktop.jpg" alt="Hero background" />
         </picture>
 
@@ -84,7 +84,7 @@ export const HeroSection = () => {
                 size={32}
                 className="text-[var(--cta)] w-12 h-12 text-gray-300 mx-auto animate-bounce"
               />
-              <p className=" text-xs font-light tracking-[0.4em] mt-1 text-gray-300">
+              <p className=" text-sm   tracking-[0.4em] mt-1 text-gray-300">
                 Scroll down
               </p>
             </motion.div>

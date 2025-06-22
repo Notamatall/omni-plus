@@ -1,8 +1,15 @@
+import { globalMissionSectionT } from "./global-mission";
+import { humanBenefitsT } from "./human-benefits-section";
+import { omniPlusSectionT } from "./omni-plus-section";
+
 export default {
   translation: {
+    ...globalMissionSectionT,
+    ...humanBenefitsT,
+    ...omniPlusSectionT,
     section1: "About us",
     section2: "Global Challenge",
-    section3: "Uniqueness",
+    section3: "Global Mission",
     section4: "In Action",
     section5: "Advantages",
     section6: "Order now",
@@ -31,6 +38,18 @@ export default {
         have been unlocked using cold plasma technology —
         delivering a natural boost to soil fertility and plant growth, even in the harshest environments.`,
 
+    omni_power_of_organic_agriculture_description:
+      "The Power of Organic Agriculture",
+    omni_power_of_organic_agriculture_text:
+      "Organic farming promotes balanced plant metabolism — and, as a result, better human and animal metabolism.",
+    omni_power_of_organic_agriculture_points: [
+      "Supports healthy metabolic function",
+      "Enhances nutritional biochemistry of crops",
+      "Reduces food toxicity",
+      "Leads to cleaner, safer nutrition",
+    ],
+    hidden_dangers_subtitle:
+      "Hidden Dangers in Our Food: Nitrates & Heavy Metals",
     omni_soils_are_dying_description:
       " Soils Are Dying. Crops Are Losing Nutritional Value",
     omni_soils_are_dying_points: [
@@ -46,6 +65,29 @@ export default {
       "Disrupts healthy plant metabolism",
       "Leads to the accumulation of nitrates, heavy metals, and pesticides",
       "Contributes to chronic poisoning and increased cancer risk",
+    ],
+
+    hidden_danger: [
+      {
+        title: "Nitrates",
+        sources:
+          "Leafy greens (spinach, lettuce, parsley), root vegetables (beets, carrots, potatoes)",
+        effects: [
+          "Convert to nitrites, which impair oxygen transport by forming methemoglobin",
+          'Linked to "blue baby syndrome" in infants',
+          "React with amines to form nitrosamines — carcinogens that increase the risk of stomach, esophageal, and colon cancers",
+        ],
+      },
+      {
+        title: "Heavy Metals (Cadmium, Lead, Mercury, Arsenic)",
+        sources: "Contaminated soil and water",
+        effects: [
+          "Cadmium: Damages kidneys and bones; linked to lung cancer",
+          "Lead: Affects the central nervous system, especially in children (lower IQ, developmental delay)",
+          "Mercury: Neurotoxic; harms kidneys, causes tremors and insomnia",
+          "Arsenic: Causes skin disorders and cancers of the skin, lungs, and bladder",
+        ],
+      },
     ],
   },
 };

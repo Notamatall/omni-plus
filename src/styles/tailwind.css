@@ -9,7 +9,7 @@
   --contrast: #dcedc8;
 }
 * {
-  font-family: "Oswald", sans-serif;
+  font-family: "Exo", sans-serif;
 }
 
 h1 {
@@ -17,8 +17,43 @@ h1 {
   letter-spacing: -1.5px;
   text-transform: uppercase;
   margin-bottom: 0;
-  font-size: 7vw;
+  font-size: clamp(30px, 7vw, 80px);
   font-weight: 600;
   line-height: 1.2em;
+  margin: 2rem auto;
 }
+
+h2 {
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 0;
+  font-size: clamp(24px, 4vw, 50px);
+  font-weight: 500;
+  line-height: 1em;
+  margin: 1.5rem auto;
+  font-family: "Exo", sans-serif;
+}
+
+h3 {
+  text-align: center;
+  letter-spacing: -1px;
+  text-transform: uppercase;
+  margin-bottom: 0;
+  font-size: clamp(20px, 1.7vw, 24px);
+  font-weight: 400;
+  line-height: 1em;
+  margin: 0.5rem auto;
+  font-family: "Exo", sans-serif;
+}
+
+h4 {
+  letter-spacing: -1px;
+  margin-bottom: 0;
+  font-size: clamp(16px, 1.2vw, 20px);
+  font-weight: 400;
+  line-height: 1em;
+  margin: 0.7rem auto;
+  font-family: "Exo", sans-serif;
+}
+
 @import "tailwindcss";

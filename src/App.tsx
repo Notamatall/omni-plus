@@ -9,8 +9,10 @@ import { useTranslation } from "react-i18next";
 import { NaturalSolution } from "./components/AboutUs/NaturalSolution";
 import { OurMission } from "./components/AboutUs/OurMission";
 import { DeepTechnology } from "./components/AboutUs/DeepTechnology";
-import { SoilsAreDying } from "./components/GlobalChallenge/SoilsAreDying";
-import { ToxicLegacy } from "./components/GlobalChallenge/ToxicLegacy";
+import { GlobalChallegeSection } from "./components/GlobalChallenge/GlobalChallegeSection";
+import { GlobalMissionSection } from "./components/GlobalMission/GlobalMission";
+import { OmniCatalystSection } from "./components/OmniPlus/OmniPlusSection";
+import { HumanBenefitsSection } from "./components/HumanBenefits/HumanBenefitsSection";
 
 // Stats Section
 const StatsSection = () => {
@@ -145,9 +147,9 @@ const MainSections = () => {
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-10">
               {t("section1")}
             </h2>
-            <p className="text-2xl text-green-800 max-w-3xl mx-auto">
+            <h3 className="text-2xl text-green-800 max-w-3xl mx-auto">
               {t("section1_subtitle")}
-            </p>
+            </h3>
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-8">
@@ -157,75 +159,10 @@ const MainSections = () => {
           </div>
         </div>
       </section>
-
-      <section id="section2" className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-10">
-              {t("section2")}
-            </h2>
-            <p className="text-2xl text-green-800 max-w-3xl mx-auto">
-              {t("section2_subtitle")}
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <SoilsAreDying />
-            <ToxicLegacy />
-            <DeepTechnology />
-          </div>
-        </div>
-      </section>
-
-      <section id="section3" className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-            >
-              <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-                {t("section2")}
-              </h2>
-              <p className="text-xl text-gray-600 mb-8">
-                Transform your farming practices with intelligent fertilizer
-                solutions that adapt to your soil's unique needs.
-              </p>
-              <ul className="space-y-4">
-                {[
-                  "Real-time soil analysis",
-                  "Precision nutrient delivery",
-                  "Sustainable farming practices",
-                ].map((item, i) => (
-                  <li key={i} className="flex items-center space-x-3">
-                    <div className="w-6 h-6 bg-green-600 rounded-full flex items-center justify-center">
-                      <ArrowRight className="w-4 h-4 text-white" />
-                    </div>
-                    <span className="text-lg text-gray-700">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              className="relative"
-            >
-              <div className="aspect-square bg-gradient-to-br from-green-400 to-green-600 rounded-3xl flex items-center justify-center">
-                <Leaf className="w-32 h-32 text-white/30" />
-              </div>
-              <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-green-200 rounded-full -z-10"></div>
-              <div className="absolute -top-6 -left-6 w-24 h-24 bg-green-100 rounded-full -z-10"></div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
+      <GlobalChallegeSection />
+      <GlobalMissionSection />
+      <OmniCatalystSection />
+      <HumanBenefitsSection />
       <StatsSection />
 
       <section id="section4" className="py-20 bg-green-600 text-white">
