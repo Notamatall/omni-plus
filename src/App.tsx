@@ -9,10 +9,11 @@ import { useTranslation } from "react-i18next";
 import { NaturalSolution } from "./components/AboutUs/NaturalSolution";
 import { OurMission } from "./components/AboutUs/OurMission";
 import { DeepTechnology } from "./components/AboutUs/DeepTechnology";
-import { GlobalChallegeSection } from "./components/GlobalChallenge/GlobalChallegeSection";
 import { GlobalMissionSection } from "./components/GlobalMission/GlobalMission";
 import { OmniCatalystSection } from "./components/OmniPlus/OmniPlusSection";
 import { HumanBenefitsSection } from "./components/HumanBenefits/HumanBenefitsSection";
+import { GlobalChallengeSection } from "./components/GlobalChallenge/GlobalChallengeSection";
+import { ContactOrderSection } from "./components/ContactOrder/ContactOrderSection";
 
 // Stats Section
 const StatsSection = () => {
@@ -159,10 +160,11 @@ const MainSections = () => {
           </div>
         </div>
       </section>
-      <GlobalChallegeSection />
+      <GlobalChallengeSection />
       <GlobalMissionSection />
       <OmniCatalystSection />
       <HumanBenefitsSection />
+      <ContactOrderSection />
       <StatsSection />
 
       <section id="section4" className="py-20 bg-green-600 text-white">
@@ -546,8 +548,6 @@ const Footer = () => {
 const App = () => {
   return (
     <>
-      {/* <LeafCursor /> */}
-
       <div className="scroll-container">
         <ParticleCanvas />
         <Navigation />

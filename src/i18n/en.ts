@@ -1,9 +1,13 @@
+import { contactOrderSection } from "./contact-order";
+import { globalChallengeSectionT } from "./global-challenge";
 import { globalMissionSectionT } from "./global-mission";
-import { humanBenefitsT } from "./human-benefits-section";
-import { omniPlusSectionT } from "./omni-plus-section";
+import { humanBenefitsT } from "./human-benefits";
+import { omniPlusSectionT } from "./omni-plus";
 
 export default {
   translation: {
+    ...contactOrderSection,
+    ...globalChallengeSectionT,
     ...globalMissionSectionT,
     ...humanBenefitsT,
     ...omniPlusSectionT,
