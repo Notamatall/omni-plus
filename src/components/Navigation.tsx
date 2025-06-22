@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { LanguageDropdown } from "./LanguageSwitcher";
 import { useTranslation } from "react-i18next";
 import { OmniLogo } from "./OmniLogo";
+import { Sections } from "../constants/navLinks";
 
 export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,12 +25,11 @@ export const Navigation = () => {
   };
 
   const navItems = [
-    { id: "section1", label: t("section1") },
-    { id: "section2", label: t("section2") },
-    { id: "section3", label: t("section3") },
-    { id: "section4", label: t("section4") },
-    { id: "section5", label: t("section5") },
-    { id: "section6", label: t("section6") },
+    { id: Sections.GlobalChallenge, label: t("section1") },
+    { id: Sections.GlobalMission, label: t("section2") },
+    { id: Sections.OmniPlus, label: t("section3") },
+    { id: Sections.HumanBenefits, label: t("section4") },
+    { id: Sections.ContactOrder, label: t("section5") },
   ];
 
   return (
@@ -162,7 +162,6 @@ export const Navigation = () => {
               className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 xl:hidden"
             />
 
-            {/* Mobile Menu Panel */}
             <motion.div
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
@@ -171,7 +170,6 @@ export const Navigation = () => {
               className="fixed right-0 top-0 h-full w-80 bg-white shadow-2xl z-50 xl:hidden"
             >
               <div className="p-6">
-                {/* Mobile Menu Header */}
                 <div className="flex items-center justify-between mb-8">
                   <div className="flex items-center space-x-2">
                     <div className="bg-gradient-to-br from-green-500 to-emerald-600 p-2 rounded-xl">
@@ -209,7 +207,6 @@ export const Navigation = () => {
                   ))}
                 </div>
 
-                {/* Mobile Language Selector */}
                 <div className="mt-8 pt-8 border-t border-gray-200">
                   <LanguageDropdown />
                 </div>

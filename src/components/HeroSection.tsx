@@ -49,7 +49,7 @@ export const HeroSection = () => {
   const { t } = useTranslation();
 
   const scrollToSection = () => {
-    const element = document.getElementById("section1");
+    const element = document.getElementById("global-challenge");
     element?.scrollIntoView({ behavior: "smooth" });
   };
 

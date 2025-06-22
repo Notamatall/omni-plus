@@ -145,7 +145,10 @@ export const OmniCatalystSection = () => {
   ];
 
   return (
-    <section className="relative px-6 lg:px-12 py-24 overflow-hidden">
+    <section
+      className="relative px-6 lg:px-12 py-24 overflow-hidden"
+      id="omni-plus"
+    >
       <div className="absolute inset-0 opacity-50" />
 
       <div className="relative max-w-7xl mx-auto">

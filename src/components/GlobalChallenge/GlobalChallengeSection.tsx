@@ -49,11 +49,9 @@ export const GlobalChallengeSection = () => {
 
   return (
     <section id="global-challenge" className="relative py-24 overflow-hidden">
-      {/* Background gradient */}
       <div className="absolute inset-0  opacity-60" />
 
       <div className="relative max-w-7xl mx-auto px-6 lg:px-12">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -79,9 +77,7 @@ export const GlobalChallengeSection = () => {
           </p>
         </motion.div>
 
-        {/* Main content grid */}
         <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
-          {/* Left side - Points */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}

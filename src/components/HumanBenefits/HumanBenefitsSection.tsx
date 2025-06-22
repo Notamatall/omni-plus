@@ -47,12 +47,13 @@ export const HumanBenefitsSection = () => {
   ];
 
   return (
-    <section className="relative py-24 px-6 lg:px-12 overflow-hidden">
-      {/* Background gradient */}
+    <section
+      id="human-benefits"
+      className="relative py-24 px-6 lg:px-12 overflow-hidden"
+    >
       <div className="absolute inset-0 opacity-60" />
 
       <div className="relative max-w-7xl mx-auto">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
