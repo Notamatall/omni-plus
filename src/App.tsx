@@ -48,16 +48,17 @@ const App = () => {
   // Load images
   useEffect(() => {
     const images = ["/hero-desktop.jpg", "/hero-mobile.jpg"];
-    Promise.all(
-      images.map(
+    Promise.all([
+      ...images.map(
         (src) =>
           new Promise<void>((resolve) => {
             const img = new Image();
             img.src = src;
             img.onload = () => resolve();
           })
-      )
-    ).then(() => {
+      ),
+      new Promise((res) => setTimeout(res, 1200)),
+    ]).then(() => {
       setIsLoaded(true);
       setProgress(100);
     });
