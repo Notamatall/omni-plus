@@ -21,6 +21,7 @@ import {
   Mountain,
   Sun,
 } from "lucide-react";
+import { OmniLogo } from "./components/OmniLogo";
 
 const HeroSection = () => {
   return (
@@ -67,8 +68,8 @@ const HeroSection = () => {
                 className="absolute inset-0 bg-gradient-to-r from-green-400 to-emerald-600 rounded-full blur-2xl opacity-30"
               />
               <div className="relative flex items-center space-x-4 bg-white/80 backdrop-blur-sm rounded-3xl px-8 py-6 shadow-2xl">
-                <div className="p-4 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl">
-                  <Leaf className="w-16 h-16 text-white" />
+                <div className="p-4  rounded-2xl">
+                  <OmniLogo height={100} width={100} />
                 </div>
                 <div className="text-left">
                   <h1 className="text-6xl font-bold">
